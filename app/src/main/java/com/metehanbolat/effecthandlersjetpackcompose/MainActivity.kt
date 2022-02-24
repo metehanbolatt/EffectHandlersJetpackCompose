@@ -5,11 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import com.metehanbolat.effecthandlersjetpackcompose.ui.theme.EffectHandlersJetpackComposeTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
 
@@ -20,11 +18,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             var text by remember { mutableStateOf("") }
             EffectHandlersJetpackComposeTheme {
-                Button(onClick = { text += "#"}) {
-                    i++ /** That would be considered a side-effect because that is something that escapes the scope of a composable function. */
-                    Text(text = text)
+                LaunchedEffect(key1 = text) {
+                    delay(1000L)
+                    println("The text is $text")
                 }
-
             }
         }
     }
