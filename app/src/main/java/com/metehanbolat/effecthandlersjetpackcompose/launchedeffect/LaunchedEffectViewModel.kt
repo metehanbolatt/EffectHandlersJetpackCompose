@@ -21,4 +21,5 @@ class LaunchedEffectViewModel: ViewModel() {
         data class ShowSnackbar(val message: String): ScreenEvents()
         data class Navigate(val route: String): ScreenEvents()
     }
+
 }
